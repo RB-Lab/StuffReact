@@ -7,7 +7,6 @@ const ItemsStore = require('../../../stores/items-store');
 let Inbox = React.createClass({
 
 	getInitialState(){
-		'use strict';
 		return {
 			currentValue: '',
 			inbox: ItemsStore.getInbox()
@@ -15,7 +14,6 @@ let Inbox = React.createClass({
 	},
 
 	_add() {
-		'use strict';
 		if(!this.state.currentValue) return;
 		Actions.addItem(this.state.currentValue);
 		this.setState({currentValue: ''});
@@ -24,32 +22,26 @@ let Inbox = React.createClass({
 	_addAndManage(){},
 
 	_onInputKeyDown(e){
-		'use strict';
 		if(e.keyCode === KEYS.ENTER) return this._add();
 	},
 
 	_onInputChange(e){
-		'use strict';
 		this.setState({currentValue: e.currentTarget.value});
 	},
 
 	_onItemsChange(){
-		'use strict';
 		this.setState({inbox: ItemsStore.getInbox()});
 	},
 
 	componentDidMount() {
-		'use strict';
 		ItemsStore.addChangeListener(this._onItemsChange);
 	},
 
 	componentWillUnmount() {
-		'use strict';
 		ItemsStore.removeChangeListener(this._onItemsChange);
 	},
 
 	render() {
-		'use strict';
 		return (
 			<section>
 				<div>

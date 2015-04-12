@@ -15,12 +15,10 @@ let MainMenu = React.createClass({
 	],
 
 	_onChange(e, i) {
-		'use strict';
 		Actions.changePage(this.menuItems[i].payload);
 	},
 
 	render() {
-		'use strict';
 		return (
 			<header id="main-menu">
 				<DropDownMenu menuItems={this.menuItems} onChange={this._onChange}/>

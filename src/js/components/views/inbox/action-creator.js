@@ -4,7 +4,6 @@ var Constants = require('./constants');
 module.exports = {
 
 	addItem: function(itemName) {
-		'use strict';
 		AppDispatcher.handleViewAction({
 			type: Constants.ADD_ITEM,
 			data: {
@@ -14,7 +13,6 @@ module.exports = {
 	},
 
 	addAndManage: function(itemName) {
-		'use strict';
 		AppDispatcher.handleViewAction({
 			type: Constants.ADD_AND_MANAGE,
 			data: {

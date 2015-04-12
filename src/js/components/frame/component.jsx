@@ -14,32 +14,26 @@ const views = {
 let App = React.createClass({
 
 	getInitialState() {
-		'use strict';
 		return {currentView: this._getView()};
 	},
 
 	_onChange() {
-		'use strict';
 		this.setState({currentView: this._getView()});
 	},
 
 	_getView(){
-		'use strict';
 		return views[Store.getState().currentView];
 	},
 
 	componentDidMount() {
-		'use strict';
 		Store.addChangeListener(this._onChange);
 	},
 
 	componentWillUnmount() {
-		'use strict';
 		Store.removeChangeListener(this._onChange);
 	},
 
 	render() {
-		'use strict';
 		return (
 			<div id="frame">
 				<MainMenu />

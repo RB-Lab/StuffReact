@@ -44,6 +44,10 @@ var ItemsStore = assign({}, EventEmitter.prototype, {
 		return items.filter((item) => {
 			return item.isInbox();
 		}).reverse();
+	},
+
+	getLastItem(){
+		return items[items.length - 1];
 	}
 
 });
@@ -62,7 +66,7 @@ AppDispatcher.register(function(payload){
 	switch(payload.action.type){
 		case inboxConstants.ADD_ITEM:
 			items.push(new Item(payload.action.data.itemName));
-			storage.save(STORAGE_NAME, items);
+			storage.save(STORAGE_NAME, items); // TODO move all async write operations to actions
 			ItemsStore.emitChange();
 			break;
 	}

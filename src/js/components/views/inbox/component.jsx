@@ -19,7 +19,11 @@ let Inbox = React.createClass({
 		this.setState({currentValue: ''});
 	},
 
-	_addAndManage(){},
+	_addAndManage(){
+		if(!this.state.currentValue) return;
+		Actions.addAndManage(this.state.currentValue);
+		this.setState({currentValue: ''});
+	},
 
 	_onInputKeyDown(e){
 		if(e.keyCode === KEYS.ENTER) return this._add();

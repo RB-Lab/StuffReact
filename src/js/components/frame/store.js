@@ -1,12 +1,13 @@
 const assign = require('object-assign');
 const EventEmitter = require('events').EventEmitter;
-const AppDispatcher = require('../../app-dispatcher');
-const MainMenuContsatnts = require('../main-menu/constants');
+const AppDispatcher = require('app-dispatcher');
+const globalActions = require('constants/app-constants').globalActions;
 
 const CHANGE_EVENT = 'change';
 
 var frameState = {
-	currentView: 'inbox'
+	currentView: 'inbox',
+	data: {}
 };
 
 var FrameStore = assign({}, EventEmitter.prototype, {
@@ -30,10 +31,11 @@ var FrameStore = assign({}, EventEmitter.prototype, {
 	}
 });
 
-AppDispatcher.register(function(payload){
+AppDispatcher.register((payload) => {
 	switch(payload.action.type){
-		case MainMenuContsatnts.CHANGE_PAGE:
+		case globalActions.CHANGE_PAGE:
 			frameState.currentView = payload.action.data.page;
+			frameState.data = payload.action.data.data;
 			FrameStore.emitChange();
 			break;
 	}

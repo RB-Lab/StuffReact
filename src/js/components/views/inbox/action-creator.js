@@ -1,5 +1,7 @@
-var AppDispatcher = require('../../../app-dispatcher');
+var AppDispatcher = require('app-dispatcher');
 var Constants = require('./constants');
+var changePageActionCreator = require('actions/change-page');
+var ItemsStore = require('stores/items-store');
 
 module.exports = {
 
@@ -13,12 +15,9 @@ module.exports = {
 	},
 
 	addAndManage: function(itemName) {
-		AppDispatcher.handleViewAction({
-			type: Constants.ADD_AND_MANAGE,
-			data: {
-				itemName: itemName
-			}
-		});
+		this.addItem(itemName);
+		// TODO move all pages to some.. file?
+		changePageActionCreator.changePage('type-selector', ItemsStore.getLastItem());
 	}
 
 };

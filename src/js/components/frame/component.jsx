@@ -8,21 +8,23 @@ const views = {
 	contexts: require('../views/contexts/component.jsx'),
 	reference: require('../views/reference/component.jsx'),
 	ideas: require('../views/ideas/component.jsx'),
-	calendar: require('../views/calendar/component.jsx')
+	calendar: require('../views/calendar/component.jsx'),
+	'type-selector': require('../views/type-selector/component.jsx')
 };
 
 let App = React.createClass({
 
 	getInitialState() {
-		return {currentView: this._getView()};
+		return this._getState();
 	},
 
 	_onChange() {
-		this.setState({currentView: this._getView()});
+		this.setState(this._getState());
 	},
 
-	_getView(){
-		return views[Store.getState().currentView];
+	_getState(){
+		var storeState = Store.getState();
+		return {currentView: views[storeState.currentView], data: storeState.data};
 	},
 
 	componentDidMount() {
@@ -37,7 +39,7 @@ let App = React.createClass({
 		return (
 			<div id="frame">
 				<MainMenu />
-				<this.state.currentView/>
+				<this.state.currentView data={this.state.data}/>
 			</div>
 		);
 	}

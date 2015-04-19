@@ -6,7 +6,7 @@
 ## Running your project
 
 ```bash
-$ npm start
+$ NODE_PATH=src/js npm start
 ```
 
 If you prefer to just build without the live reload and build-on-each-change watcher, run:

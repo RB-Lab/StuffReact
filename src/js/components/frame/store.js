@@ -1,7 +1,7 @@
 const assign = require('object-assign');
 const EventEmitter = require('events').EventEmitter;
 const AppDispatcher = require('app-dispatcher');
-const globalActions = require('constants/app-constants').globalActions;
+const Constants = require('./constants');
 
 const CHANGE_EVENT = 'change';
 
@@ -33,7 +33,7 @@ var FrameStore = assign({}, EventEmitter.prototype, {
 
 AppDispatcher.register((payload) => {
 	switch(payload.action.type){
-		case globalActions.CHANGE_PAGE:
+		case Constants.CHANGE_PAGE:
 			frameState.currentView = payload.action.data.page;
 			frameState.data = payload.action.data.data;
 			FrameStore.emitChange();

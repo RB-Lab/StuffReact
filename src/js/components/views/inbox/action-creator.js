@@ -1,6 +1,6 @@
 var AppDispatcher = require('app-dispatcher');
 var Constants = require('./constants');
-var changePageActionCreator = require('actions/change-page');
+var frameActions = require('components/frame/action-creator');
 var ItemsStore = require('stores/items-store');
 
 module.exports = {
@@ -17,7 +17,7 @@ module.exports = {
 	addAndManage: function(itemName) {
 		this.addItem(itemName);
 		// TODO move all pages to some.. file?
-		changePageActionCreator.changePage('type-selector', ItemsStore.getLastItem());
+		frameActions.changePage('type-selector', ItemsStore.getLastItem());
 	}
 
 };

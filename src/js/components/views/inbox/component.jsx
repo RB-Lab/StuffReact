@@ -1,8 +1,8 @@
 const React = require('react');
 const {RaisedButton, TextField} = require('material-ui');
 const Actions = require('./action-creator');
-const KEYS = require('../../../constants/key-codes');
-const ItemsStore = require('../../../stores/items-store');
+const KEYS = require('constants/key-codes');
+const ItemsStore = require('stores/items-store');
 
 let Inbox = React.createClass({
 

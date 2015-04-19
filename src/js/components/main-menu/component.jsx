@@ -1,6 +1,6 @@
 const React = require('react');
 const {DropDownMenu} = require('material-ui');
-const changePageAction = require('../../actions/change-page');
+const frameActions = require('components/frame/action-creator');
 
 
 let MainMenu = React.createClass({
@@ -15,7 +15,7 @@ let MainMenu = React.createClass({
 	],
 
 	_onChange(e, i) {
-		changePageAction.changePage(this.menuItems[i].payload);
+		frameActions.changePage(this.menuItems[i].payload);
 	},
 
 	render() {

@@ -1,18 +1,12 @@
 const React = require('react');
 const {DropDownMenu} = require('material-ui');
 const frameActions = require('components/frame/action-creator');
+const pages = require('page-manager');
 
 
 let MainMenu = React.createClass({
 
-	menuItems: [
-		{ payload: 'inbox', text: 'Inbox' },
-		{ payload: 'projects', text: 'Projects' },
-		{ payload: 'contexts', text: 'Contexts' },
-		{ payload: 'reference', text: 'Reference' },
-		{ payload: 'ideas', text: 'Ideas' },
-		{ payload: 'calendar', text: 'Calendar' },
-	],
+	menuItems: pages.getMainMenu(),
 
 	_onChange(e, i) {
 		frameActions.changePage(this.menuItems[i].payload);

@@ -2,15 +2,7 @@ const React = require('react');
 const MainMenu = require('../main-menu/component.jsx');
 const Store = require('./store');
 
-const views = {
-	inbox: require('../views/inbox/component.jsx'),
-	projects: require('../views/projects/component.jsx'),
-	contexts: require('../views/contexts/component.jsx'),
-	reference: require('../views/reference/component.jsx'),
-	ideas: require('../views/ideas/component.jsx'),
-	calendar: require('../views/calendar/component.jsx'),
-	'type-selector': require('../views/type-selector/component.jsx')
-};
+const views = require('page-manager').pages;
 
 let App = React.createClass({
 
@@ -24,7 +16,7 @@ let App = React.createClass({
 
 	_getState(){
 		var storeState = Store.getState();
-		return {currentView: views[storeState.currentView], data: storeState.data};
+		return {currentView: views[storeState.currentView].component, data: storeState.data};
 	},
 
 	componentDidMount() {

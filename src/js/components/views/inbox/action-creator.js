@@ -1,7 +1,7 @@
-var AppDispatcher = require('app-dispatcher');
-var Constants = require('./constants');
-var frameActions = require('components/frame/action-creator');
-var ItemsStore = require('stores/items-store');
+const AppDispatcher = require('app-dispatcher');
+const Constants = require('./constants');
+const frameActions = require('components/frame/action-creator');
+const ItemsStore = require('stores/items-store');
 
 module.exports = {
 
@@ -16,8 +16,9 @@ module.exports = {
 
 	addAndManage: function(itemName) {
 		this.addItem(itemName);
-		// TODO move all pages to some.. file?
-		frameActions.changePage('type-selector', ItemsStore.getLastItem());
+		// TODO in action creators you should requrie page-manager dynamically due to circular
+		// dependencies. That's looks ugly.
+		frameActions.changePage(require('page-manager').pages.typeSelector.name, ItemsStore.getLastItem());
 	}
 
 };

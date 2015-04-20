@@ -1,17 +1,21 @@
 const window = require('./window');
-const _ = require('lodash');
+const Promise = require('promise'); // jshint ignore:line
 
 module.exports = {
-	save(name, payload, cb){
-		window.localStorage.setItem(name, JSON.stringify(payload));
-		if(_.isFunction(cb)) cb(null);
+	save(name, payload){
+		return new Promise((resolve) => {
+			window.localStorage.setItem(name, JSON.stringify(payload));
+			resolve();
+		});
 	},
-	get(name, cb){
-		const item = window.localStorage.getItem(name);
-		try {
-			cb(null, JSON.parse(item));
-		} catch (ignore) {
-			cb(null, item);
-		}
+	get(name){
+		return new Promise((resolve) => {
+			const item = window.localStorage.getItem(name);
+			try {
+				resolve(JSON.parse(item));
+			} catch (ignore) {
+				resolve(item);
+			}
+		});
 	}
 };

@@ -1,26 +1,14 @@
 const _ = require('lodash');
 const assign = require('object-assign');
 const EventEmitter = require('events').EventEmitter;
-const AppDispatcher = require('../app-dispatcher');
-const inboxConstants = require('../components/views/inbox/constants');
-const storage = require('../lib/storage');
+const AppDispatcher = require('app-dispatcher');
+const inboxConstants = require('components/views/inbox/constants');
+const storage = require('lib/storage');
+const Item = require('models/item');
+const STOARGES = require('constants/app-constants').stoages;
+
 
 const CHANGE_EVENT = 'change';
-const STORAGE_NAME = 'items';
-
-function Item(initValue){
-
-	initValue = _.isObject(initValue) ? initValue : {title: initValue || ''};
-
-	this.context = initValue.context || null;
-	this.project = initValue.project || null;
-	this.title = initValue.title;
-	this.description = initValue.description || '';
-}
-
-Item.prototype.isInbox = function(){
-	return !(this.context &&this.project);
-};
 
 var items = [];
 
@@ -48,25 +36,30 @@ var ItemsStore = assign({}, EventEmitter.prototype, {
 
 	getLastItem(){
 		return items[items.length - 1];
+	},
+
+	getAll(){
+		return items;
 	}
 
 });
 
-storage.get(STORAGE_NAME, (err, storedItems) => {
-	if (err) return; // throw err or what?
+// initial loading items array from storage
+storage.get(STOARGES.ITEMS_STORAGE).then((storedItems) => {
 	if (_.isArray(storedItems)){
 		storedItems.forEach((item) => {
 			items.push(new Item(item));
 			ItemsStore.emitChange();
 		});
 	}
+}).catch(function(){
+	// TODO what?
 });
 
 AppDispatcher.register(function(payload){
 	switch(payload.action.type){
 		case inboxConstants.ADD_ITEM:
 			items.push(new Item(payload.action.data.itemName));
-			storage.save(STORAGE_NAME, items); // TODO move all async write operations to actions
 			ItemsStore.emitChange();
 			break;
 	}

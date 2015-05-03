@@ -3,6 +3,7 @@ const {RaisedButton, TextField} = require('material-ui');
 const Actions = require('./action-creator');
 const KEYS = require('constants/key-codes');
 const ItemsStore = require('stores/items-store');
+const Item = require('components/ui/item/component.jsx');
 
 let Inbox = React.createClass({
 
@@ -13,36 +14,40 @@ let Inbox = React.createClass({
 		};
 	},
 
-	_add() {
+	add_() {
 		if(!this.state.currentValue) return;
 		Actions.addItem(this.state.currentValue);
 		this.setState({currentValue: ''});
 	},
 
-	_addAndManage(){
+	addAndManage_(){
 		if(!this.state.currentValue) return;
 		Actions.addAndManage(this.state.currentValue);
 		this.setState({currentValue: ''});
 	},
 
-	_onInputKeyDown(e){
-		if(e.keyCode === KEYS.ENTER) return this._add();
+	onInputKeyDown_(e){
+		if(e.keyCode === KEYS.ENTER) return this.add_();
 	},
 
-	_onInputChange(e){
+	onInputChange_(e){
 		this.setState({currentValue: e.currentTarget.value});
 	},
 
-	_onItemsChange(){
+	onItemsChange_(){
 		this.setState({inbox: ItemsStore.getInbox()});
 	},
 
 	componentDidMount() {
-		ItemsStore.addChangeListener(this._onItemsChange);
+		ItemsStore.addChangeListener(this.onItemsChange_);
 	},
 
 	componentWillUnmount() {
-		ItemsStore.removeChangeListener(this._onItemsChange);
+		ItemsStore.removeChangeListener(this.onItemsChange_);
+	},
+
+	manageItem_(item){
+		Actions.manageItem(item)
 	},
 
 	render() {
@@ -51,16 +56,16 @@ let Inbox = React.createClass({
 				<div>
 					<TextField hintText='Add new item'
 						value={this.state.currentValue}
-						onKeyDown={this._onInputKeyDown}
-						onChange={this._onInputChange}
+						onKeyDown={this.onInputKeyDown_}
+						onChange={this.onInputChange_}
 					/>
 				</div>
-				<RaisedButton label='Add' onClick={this._add} />&nbsp;
-				<RaisedButton label='Add and manage' onClick={this._addAndManage} />
+				<RaisedButton label='Add' onClick={this.add_} />&nbsp;
+				<RaisedButton label='Add and manage' onClick={this.addAndManage_} />
 				<ul>
 				{this.state.inbox.map((item) => {
 					return(
-						<li>{item.title}</li>
+						<Item item={item} onClick={this.manageItem_} />
 					);
 				})}
 				</ul>

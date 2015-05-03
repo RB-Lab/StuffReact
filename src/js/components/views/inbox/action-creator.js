@@ -8,7 +8,7 @@ const PAGES = require('constants/pages').PAGES;
 
 module.exports = {
 
-	addItem: function(itemName) {
+	addItem(itemName) {
 		AppDispatcher.handleViewAction({
 			type: Constants.ADD_ITEM,
 			data: {
@@ -21,9 +21,13 @@ module.exports = {
 		});
 	},
 
-	addAndManage: function(itemName) {
+	manageItem(item){
+		frameActions.changePage(PAGES.TYPE_SELECTOR, item);
+	},
+
+	addAndManage(itemName) {
 		this.addItem(itemName);
-		frameActions.changePage(PAGES.TYPE_SELECTOR, ItemsStore.getLastItem());
+		this.manageItem(ItemsStore.getLastItem());
 	}
 
 };

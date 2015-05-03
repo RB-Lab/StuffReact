@@ -13,6 +13,9 @@ COMPONENTS[PAGES.REFERENCE] = require('components/views/reference/component.jsx'
 COMPONENTS[PAGES.IDEAS] = require('components/views/ideas/component.jsx');
 COMPONENTS[PAGES.CALENDAR] = require('components/views/calendar/component.jsx');
 COMPONENTS[PAGES.TYPE_SELECTOR] = require('components/views/type-selector/component.jsx');
+COMPONENTS[PAGES.MANAGE_ACTION] = require('components/views/manage-action/component.jsx');
+COMPONENTS[PAGES.MANAGE_REFERENCE] = require('components/views/manage-reference/component.jsx');
+COMPONENTS[PAGES.MANAGE_IDEA] = require('components/views/manage-idea/component.jsx');
 
 let App = React.createClass({
 

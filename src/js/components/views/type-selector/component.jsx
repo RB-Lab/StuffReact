@@ -1,43 +1,29 @@
 const React = require('react');
 const {RaisedButton} = require('material-ui');
-const ItemsStore = require('stores/items-store');
 const ITEM_TYPES = require('constants/item-types');
+const Actions = require('./actions');
 
 let TypeSelector = React.createClass({
 
-	getInitialState(){
-		return {
-			item: this.props.data
-		};
+	setAsAction_(){
+		Actions.setItemType(this.props.data, ITEM_TYPES.TYPE_ACTION);
 	},
-
-	_setAsAction(){
-		console.log(ITEM_TYPES.TYPE_ACTION);
+	setAsIdea_(){
+		Actions.setItemType(this.props.data, ITEM_TYPES.TYPE_IDEA);
 	},
-	_setAsIdea(){
-		console.log(ITEM_TYPES.TYPE_IDEA);
-	},
-	_setAsRefernce(){
-		console.log(ITEM_TYPES.TYPE_REFERENCE);
-	},
-
-	componentDidMount() {
-		//ItemsStore.addChangeListener(this._onItemsChange);
-	},
-
-	componentWillUnmount() {
-		//ItemsStore.removeChangeListener(this._onItemsChange);
+	setAsRefernce_(){
+		Actions.setItemType(this.props.data, ITEM_TYPES.TYPE_REFERENCE);
 	},
 
 	render() {
 		return (
 			<section>
-				<h2>What &laquo;{this.state.item.title}&raquo; is?</h2>
-				<RaisedButton label='This is action' onClick={this._setAsAction} />
+				<h2>What &laquo;{this.props.data.title}&raquo; is?</h2>
+				<RaisedButton label='This is action' onClick={this.setAsAction_} />
 				<br/>
-				<RaisedButton label='This is idea' onClick={this._setAsIdea} />
+				<RaisedButton label='This is idea' onClick={this.setAsIdea_} />
 				<br/>
-				<RaisedButton label='This is reference' onClick={this._setAsRefernce} />
+				<RaisedButton label='This is reference' onClick={this.setAsRefernce_} />
 				<br/>
 			</section>
 		);

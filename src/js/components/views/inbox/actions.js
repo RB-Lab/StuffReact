@@ -5,6 +5,7 @@ const frameActions = require('components/frame/actions');
 const ItemsStore = require('stores/items-store');
 const storage = require('lib/storage');
 const PAGES = require('constants/pages').PAGES;
+const ITEM_TYPE_TO_PAGE_MAP = require('constants/pages').ITEM_TYPE_TO_PAGE_MAP;
 
 module.exports = {
 
@@ -22,7 +23,11 @@ module.exports = {
 	},
 
 	manageItem(item){
-		frameActions.changePage(PAGES.TYPE_SELECTOR, item);
+		if(!item.type){
+			frameActions.changePage(PAGES.TYPE_SELECTOR, item);
+		} else {
+			frameActions.changePage(ITEM_TYPE_TO_PAGE_MAP[item.type], item);
+		}
 	},
 
 	addAndManage(itemName) {

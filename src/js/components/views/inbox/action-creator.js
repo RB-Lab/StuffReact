@@ -4,6 +4,7 @@ const STOARGES = require('constants/app-constants').stoages;
 const frameActions = require('components/frame/action-creator');
 const ItemsStore = require('stores/items-store');
 const storage = require('lib/storage');
+const PAGES = require('constants/pages').PAGES;
 
 module.exports = {
 
@@ -24,7 +25,7 @@ module.exports = {
 		this.addItem(itemName);
 		// TODO in action creators you should requrie page-manager dynamically due to circular
 		// dependencies. That's looks ugly.
-		frameActions.changePage(require('page-manager').pages.typeSelector.name, ItemsStore.getLastItem());
+		frameActions.changePage(PAGES.TYPE_SELECTOR, ItemsStore.getLastItem());
 	}
 
 };

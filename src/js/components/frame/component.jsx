@@ -2,7 +2,17 @@ const React = require('react');
 const MainMenu = require('../main-menu/component.jsx');
 const Store = require('./store');
 
-const views = require('page-manager').pages;
+const PAGES = require('constants/pages').PAGES;
+
+var COMPONENTS = {};
+
+COMPONENTS[PAGES.INBOX] = require('components/views/inbox/component.jsx');
+COMPONENTS[PAGES.PROJECTS] = require('components/views/projects/component.jsx');
+COMPONENTS[PAGES.CONTEXTS] = require('components/views/contexts/component.jsx');
+COMPONENTS[PAGES.REFERENCE] = require('components/views/reference/component.jsx');
+COMPONENTS[PAGES.IDEAS] = require('components/views/ideas/component.jsx');
+COMPONENTS[PAGES.CALENDAR] = require('components/views/calendar/component.jsx');
+COMPONENTS[PAGES.TYPE_SELECTOR] = require('components/views/type-selector/component.jsx');
 
 let App = React.createClass({
 
@@ -16,7 +26,7 @@ let App = React.createClass({
 
 	_getState(){
 		var storeState = Store.getState();
-		return {currentView: views[storeState.currentView].component, data: storeState.data};
+		return {currentView: COMPONENTS[storeState.currentView], data: storeState.data};
 	},
 
 	componentDidMount() {

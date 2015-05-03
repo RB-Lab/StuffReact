@@ -19,8 +19,8 @@
     "gulp-sass-bulk-import": "~0.2.0"
   },
   "scripts": {
-    "dev": "gulp --type dev",
-    "start": "gulp",
+    "dev": "NODE_PATH=src/js && gulp --type dev",
+    "start": "NODE_PATH=src/js && gulp",
     "build": "gulp build"
   },
   "jest": {

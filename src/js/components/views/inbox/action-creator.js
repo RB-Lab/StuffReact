@@ -23,8 +23,6 @@ module.exports = {
 
 	addAndManage: function(itemName) {
 		this.addItem(itemName);
-		// TODO in action creators you should requrie page-manager dynamically due to circular
-		// dependencies. That's looks ugly.
 		frameActions.changePage(PAGES.TYPE_SELECTOR, ItemsStore.getLastItem());
 	}
 

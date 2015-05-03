@@ -1,6 +1,6 @@
 const React = require('react');
 const {RaisedButton, TextField} = require('material-ui');
-const Actions = require('./action-creator');
+const Actions = require('./actions');
 const KEYS = require('constants/key-codes');
 const ItemsStore = require('stores/items-store');
 const Item = require('components/ui/item/component.jsx');

@@ -1,6 +1,6 @@
 const React = require('react');
 const {DropDownMenu} = require('material-ui');
-const frameActions = require('components/frame/action-creator');
+const frameActions = require('components/frame/actions');
 
 const pages = require('constants/pages').MAIN_MENU.map(item => {
 	return {

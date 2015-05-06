@@ -1,15 +1,24 @@
 const React = require('react');
-const {RaisedButton} = require('material-ui');
+const {RaisedButton, Checkbox} = require('material-ui');
+const Actions = require('./actions');
 
 
 let Ideas = React.createClass({
 
-	done_(){
-		console.log('done');
+	getInitialState(){
+		return {done: this.props.data.done};
 	},
+
+	done_(){
+		// TODO make items immutable, move all operations to store
+		Actions.setItemDoneStatus(this.props.data, !this.state.done);
+		this.setState({done: !this.state.done});
+	},
+
 	schedule_(){
 		console.log('schedule');
 	},
+
 	delegate_(){
 		console.log('delegate');
 	},
@@ -19,7 +28,7 @@ let Ideas = React.createClass({
 			<section>
 			<h4>What to do with {this.props.data.title}?</h4>
 			<h5>If you can do it now less then for 2 minutes, then just do it</h5>
-			<RaisedButton label='Done?' onClick={this.done_}/>
+			<Checkbox checked={this.state.done} label='Done?' onCheck={this.done_}/>
 			<h5>If you cannot do it now, then:</h5>
 			<RaisedButton label='Schedule it' onClick={this.schedule_}/>
 			<RaisedButton label='Delegate it' onClick={this.delegate_}/>

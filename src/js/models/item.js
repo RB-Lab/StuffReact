@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const TYPES = require('constants/item-types');
 
 function Item(initValue){
 
@@ -9,10 +10,11 @@ function Item(initValue){
 	this.project = initValue.project || null;
 	this.title = initValue.title;
 	this.description = initValue.description || '';
+	this.done = initValue.done || false;
 }
 
 Item.prototype.isInbox = function(){
-	return !(this.context && this.project);
+	return !(this.context && this.project) && !this.done && this.type !== TYPES.TYPE_IDEA;
 };
 
 module.exports = Item;

@@ -5,14 +5,26 @@
 
 ## Running your project
 
+#### just with live reload:
+
 ```bash
-$ NODE_PATH=src/js npm start
+$ npm start
 ```
 
-If you prefer to just build without the live reload and build-on-each-change watcher, run:
+#### in dev mode (with sourcemaps)
+
+```bash
+$ npm run dev
+```
+
+#### build:
 
 ```bash
 $ npm run build
 ```
 
-```
+## Docs:
+
+#### [Original blueprint](https://github.com/RB-Lab/stuffControl/blob/master/docs/oldBluePrint.md)
+
+#### [Original flow](https://github.com/RB-Lab/stuffControl/blob/master/docs/flow.png)

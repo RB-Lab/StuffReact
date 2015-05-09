@@ -1,12 +1,20 @@
+const AppDispatcher = require('app-dispatcher');
 const STOARGES = require('constants/app-constants').stoages;
-//const frameActions = require('components/frame/actions');
+const storageActions = require('constants/app-constants').storageActions;
 const ItemsStore = require('stores/items-store');
 const storage = require('lib/storage');
 
 module.exports = {
 
 	setItemDoneStatus(item, done) {
-		item.done = done; // NOTE is it good practice to do it here, not in store?
+
+		AppDispatcher.handleViewAction({
+			type: storageActions.SET_ITEM,
+			data: {
+				oldItem: item,
+				newItem: item.set('done', done)
+			}
+		});
 
 		storage.save(STOARGES.ITEMS_STORAGE, ItemsStore.getAll()).catch(function(){
 			// TODO error handling (saving attempts must be in storage)

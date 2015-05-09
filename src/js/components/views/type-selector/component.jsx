@@ -18,7 +18,7 @@ let TypeSelector = React.createClass({
 	render() {
 		return (
 			<section>
-				<h2>What &laquo;{this.props.data.title}&raquo; is?</h2>
+				<h2>What &laquo;{this.props.data.get('title')}&raquo; is?</h2>
 				<RaisedButton label='This is action' onClick={this.setAsAction_} />
 				<br/>
 				<RaisedButton label='This is idea' onClick={this.setAsIdea_} />

@@ -6,13 +6,12 @@ const Actions = require('./actions');
 let Ideas = React.createClass({
 
 	getInitialState(){
-		return {done: this.props.data.done};
+		return {done: this.props.data.get('done')};
 	},
 
 	done_(){
-		// TODO make items immutable, move all operations to store
 		Actions.setItemDoneStatus(this.props.data, !this.state.done);
-		this.setState({done: !this.state.done});
+		this.setState({done: !this.state.done}); // TODO set state on storage update
 	},
 
 	schedule_(){
@@ -26,7 +25,7 @@ let Ideas = React.createClass({
 	render() {
 		return (
 			<section>
-			<h4>What to do with {this.props.data.title}?</h4>
+			<h4>What to do with {this.props.data.get('title')}?</h4>
 			<h5>If you can do it now less then for 2 minutes, then just do it</h5>
 			<Checkbox checked={this.state.done} label='Done?' onCheck={this.done_}/>
 			<h5>If you cannot do it now, then:</h5>

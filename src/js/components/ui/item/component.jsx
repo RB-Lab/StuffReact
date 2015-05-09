@@ -8,7 +8,7 @@ let Contexts = React.createClass({
 
 	render() {
 		return (
-			<li onClick={this.onClick_} className='item'>{this.props.item.title}</li>
+			<li onClick={this.onClick_} className='item'>{this.props.item.get('title')}</li>
 		);
 	}
 

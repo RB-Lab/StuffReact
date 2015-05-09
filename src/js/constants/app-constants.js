@@ -7,6 +7,10 @@ module.exports = {
 
 	stoages: {
 		ITEMS_STORAGE: 'items'
+	},
+
+	storageActions: {
+		SET_ITEM: 'SET_ITEM'
 	}
 
 };

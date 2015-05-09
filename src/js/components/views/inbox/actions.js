@@ -23,10 +23,10 @@ module.exports = {
 	},
 
 	manageItem(item){
-		if(!item.type){
+		if(!item.get('type')){
 			frameActions.changePage(PAGES.TYPE_SELECTOR, item);
 		} else {
-			frameActions.changePage(ITEM_TYPE_TO_PAGE_MAP[item.type], item);
+			frameActions.changePage(ITEM_TYPE_TO_PAGE_MAP[item.get('type')], item);
 		}
 	},
 

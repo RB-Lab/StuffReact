@@ -36,13 +36,14 @@
     ]
   },
   "dependencies": {
-    "material-ui-sass": "~0.7.2",
-    "react-tap-event-plugin": "~0.1.6",
-    "material-ui": "~0.7.3",
-    "object-assign": "~2.0.0",
     "flux": "~2.0.1",
-    "react": "~0.13.1",
+    "immutable": "^3.7.2",
     "lodash": "~3.6.0",
-    "promise": "~7.0.0"
+    "material-ui": "~0.7.3",
+    "material-ui-sass": "~0.7.2",
+    "object-assign": "~2.0.0",
+    "promise": "~7.0.0",
+    "react": "~0.13.1",
+    "react-tap-event-plugin": "~0.1.6"
   }
 }

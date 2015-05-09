@@ -3,9 +3,11 @@ const assign = require('object-assign');
 const EventEmitter = require('events').EventEmitter;
 const AppDispatcher = require('app-dispatcher');
 const inboxConstants = require('components/views/inbox/constants');
+const storageActions = require('constants/app-constants').storageActions;
 const storage = require('lib/storage');
-const Item = require('models/item');
 const STOARGES = require('constants/app-constants').stoages;
+const Item = require('models/Item');
+const {Map} = require('immutable'); /* jshint ignore: line */ // redefinition of Map - now it's immutable
 
 
 const CHANGE_EVENT = 'change';
@@ -28,10 +30,9 @@ var ItemsStore = assign({}, EventEmitter.prototype, {
 		this.emit(CHANGE_EVENT);
 	},
 
+
 	getInbox(){
-		return items.filter((item) => {
-			return item.isInbox();
-		}).reverse();
+		return items.filter(Item.isInbox).reverse();
 	},
 
 	getLastItem(){
@@ -40,6 +41,12 @@ var ItemsStore = assign({}, EventEmitter.prototype, {
 
 	getAll(){
 		return items;
+	},
+
+	setItem(oldItem, newItem){
+		var index = items.indexOf(oldItem);
+		if(index < 0) debugger;
+		items[index] = newItem;
 	}
 
 });
@@ -48,7 +55,7 @@ var ItemsStore = assign({}, EventEmitter.prototype, {
 storage.get(STOARGES.ITEMS_STORAGE).then((storedItems) => {
 	if (_.isArray(storedItems)){
 		storedItems.forEach((item) => {
-			items.push(new Item(item));
+			items.push(new Map(new Item(item)));
 			ItemsStore.emitChange();
 		});
 	}
@@ -59,7 +66,11 @@ storage.get(STOARGES.ITEMS_STORAGE).then((storedItems) => {
 AppDispatcher.register(function(payload){
 	switch(payload.action.type){
 		case inboxConstants.ADD_ITEM:
-			items.push(new Item(payload.action.data.itemName));
+			items.push(new Map(new Item(payload.action.data.itemName)));
+			ItemsStore.emitChange();
+			break;
+		case storageActions.SET_ITEM:
+			ItemsStore.setItem(payload.action.data.oldItem, payload.action.data.newItem);
 			ItemsStore.emitChange();
 			break;
 	}

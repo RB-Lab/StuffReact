@@ -13,8 +13,8 @@ function Item(initValue){
 	this.done = initValue.done || false;
 }
 
-Item.prototype.isInbox = function(){
-	return !(this.context && this.project) && !this.done && this.type !== TYPES.TYPE_IDEA;
+Item.isInbox = function(item){
+	return !(item.get('context') && item.get('project')) && !item.get('done') && item.get('type') !== TYPES.TYPE_IDEA;
 };
 
 module.exports = Item;

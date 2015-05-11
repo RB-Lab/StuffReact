@@ -2,5 +2,9 @@
 @import "../../node_modules/material-ui-sass/material-ui/_html";
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500);
 
+// material design iconic font:
+// copied from https://github.com/zavoloklom/material-design-iconic-font
+@import "material-design-iconic-font/material-design-iconic-font";
+
 //Your custom app styles
 @import "../js/components/**/*.scss";

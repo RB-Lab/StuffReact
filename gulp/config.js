@@ -34,6 +34,10 @@ module.exports = {
 		src: 'src/index.html',
 		dest: dest
 	},
+	assets: {
+		src: 'src/assets/**/*',
+		dest: dest + '/assets'
+	},
 	watch: {
 		src: 'src/**/*.*',
 		tasks: ['build']

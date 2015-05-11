@@ -1,6 +1,8 @@
 const React = require('react');
 const {RaisedButton, Checkbox} = require('material-ui');
 const Actions = require('./actions');
+const frameActions = require('components/frame/actions');
+const PAGES = require('constants/pages').PAGES;
 
 
 let Ideas = React.createClass({
@@ -15,17 +17,17 @@ let Ideas = React.createClass({
 	},
 
 	schedule_(){
-		console.log('schedule');
+		frameActions.changePage(PAGES.ACTION_SCHEDULE, this.props.data);
 	},
 
 	delegate_(){
-		console.log('delegate');
+		frameActions.changePage(PAGES.ACTION_DELEGATE, this.props.data);
 	},
 
 	render() {
 		return (
 			<section>
-			<h4>What to do with {this.props.data.get('title')}?</h4>
+			<h4>What to do with &laquo;{this.props.data.get('title')}&raquo;?</h4>
 			<h5>If you can do it now less then for 2 minutes, then just do it</h5>
 			<Checkbox checked={this.state.done} label='Done?' onCheck={this.done_}/>
 			<h5>If you cannot do it now, then:</h5>

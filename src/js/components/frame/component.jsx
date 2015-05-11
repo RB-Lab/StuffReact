@@ -16,6 +16,8 @@ COMPONENTS[PAGES.TYPE_SELECTOR] = require('components/views/type-selector/compon
 COMPONENTS[PAGES.MANAGE_ACTION] = require('components/views/manage-action/component.jsx');
 COMPONENTS[PAGES.MANAGE_REFERENCE] = require('components/views/manage-reference/component.jsx');
 COMPONENTS[PAGES.MANAGE_IDEA] = require('components/views/manage-idea/component.jsx');
+COMPONENTS[PAGES.ACTION_DELEGATE] = require('components/views/action-delegate/component.jsx');
+COMPONENTS[PAGES.ACTION_SCHEDULE] = require('components/views/action-schedule/component.jsx');
 
 let App = React.createClass({
 

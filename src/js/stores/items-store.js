@@ -45,7 +45,7 @@ var ItemsStore = assign({}, EventEmitter.prototype, {
 
 	setItem(oldItem, newItem){
 		var index = items.indexOf(oldItem);
-		if(index < 0) debugger;
+		if(index < 0) debugger; // FIXME we still get here when undo "done" actions
 		items[index] = newItem;
 	}
 

@@ -8,7 +8,9 @@ const PAGES = {
 	TYPE_SELECTOR: 'typeSelector',
 	MANAGE_ACTION: 'manageAction',
 	MANAGE_REFERENCE: 'manageReference',
-	MANAGE_IDEA: 'manageIdea'
+	MANAGE_IDEA: 'manageIdea',
+	ACTION_SCHEDULE: 'actionSchedule',
+	ACTION_DELEGATE: 'actionDelegate'
 };
 
 const MAIN_MENU = [

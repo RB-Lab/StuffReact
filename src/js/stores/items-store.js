@@ -6,7 +6,7 @@ const inboxConstants = require('components/views/inbox/constants');
 const storageActions = require('constants/app-constants').storageActions;
 const storage = require('lib/storage');
 const STOARGES = require('constants/app-constants').stoages;
-const Item = require('models/Item');
+const Item = require('models/item');
 const {Map} = require('immutable'); /* jshint ignore: line */ // redefinition of Map - now it's immutable
 
 

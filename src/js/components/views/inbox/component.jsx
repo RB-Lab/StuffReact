@@ -47,7 +47,7 @@ let Inbox = React.createClass({
 	},
 
 	manageItem_(item){
-		Actions.manageItem(item)
+		Actions.manageItem(item);
 	},
 
 	render() {

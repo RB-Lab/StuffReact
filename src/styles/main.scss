@@ -6,5 +6,7 @@
 // copied from https://github.com/zavoloklom/material-design-iconic-font
 @import "material-design-iconic-font/material-design-iconic-font";
 
+@import "variables";
+
 //Your custom app styles
 @import "../js/components/**/*.scss";

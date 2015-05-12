@@ -19,7 +19,7 @@ COMPONENTS[PAGES.MANAGE_IDEA] = require('components/views/manage-idea/component.
 COMPONENTS[PAGES.ACTION_DELEGATE] = require('components/views/action-delegate/component.jsx');
 COMPONENTS[PAGES.ACTION_SCHEDULE] = require('components/views/action-schedule/component.jsx');
 
-let App = React.createClass({
+let Frame = React.createClass({
 
 	getInitialState() {
 		return this._getState();
@@ -53,4 +53,4 @@ let App = React.createClass({
 
 });
 
-module.exports = App;
+module.exports = Frame;

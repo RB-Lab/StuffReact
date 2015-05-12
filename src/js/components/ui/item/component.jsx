@@ -1,6 +1,6 @@
 const React = require('react');
 
-let Contexts = React.createClass({
+let Item = React.createClass({
 
 	onClick_(){
 		this.props.onClick(this.props.item);
@@ -14,5 +14,5 @@ let Contexts = React.createClass({
 
 });
 
-module.exports = Contexts;
+module.exports = Item;
 

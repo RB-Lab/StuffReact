@@ -1,6 +1,6 @@
 const React = require('react');
 
-let Ideas = React.createClass({
+let ManageIdea = React.createClass({
 
 	render() {
 		return (
@@ -12,5 +12,5 @@ let Ideas = React.createClass({
 
 });
 
-module.exports = Ideas;
+module.exports = ManageIdea;
 

@@ -5,7 +5,7 @@ const frameActions = require('components/frame/actions');
 const PAGES = require('constants/pages').PAGES;
 
 
-let Ideas = React.createClass({
+let ManageAction = React.createClass({
 
 	getInitialState(){
 		return {done: this.props.data.get('done')};
@@ -39,5 +39,5 @@ let Ideas = React.createClass({
 
 });
 
-module.exports = Ideas;
+module.exports = ManageAction;
 

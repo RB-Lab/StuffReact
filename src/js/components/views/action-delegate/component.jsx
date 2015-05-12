@@ -1,7 +1,7 @@
 const React = require('react');
 
 
-let Ideas = React.createClass({
+let ActionDelegate = React.createClass({
 
 	render() {
 		return (
@@ -13,5 +13,5 @@ let Ideas = React.createClass({
 
 });
 
-module.exports = Ideas;
+module.exports = ActionDelegate;
 

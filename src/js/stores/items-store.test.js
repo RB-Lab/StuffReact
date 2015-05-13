@@ -84,25 +84,4 @@ describe('items store test', ()=>{
 
 	});
 
-	it('should be able to emit change',()=>{
-		console.log(Object.keys(itemsSotre));
-		expect(itemsSotre.emitChange).to.be.a('function');
-	});
-
-	it('should add change listener',()=>{
-		let listener = sinon.spy();
-		itemsSotre.addChangeListener(listener);
-		itemsSotre.emitChange();
-		expect(listener.calledOnce).to.equal(true);
-	});
-
-	it('should rempove change listener',()=>{
-		let listener = sinon.spy();
-		itemsSotre.addChangeListener(listener);
-		itemsSotre.emitChange();
-		itemsSotre.removeChangeListener(listener);
-		itemsSotre.emitChange();
-		expect(listener.calledOnce).to.equal(true);
-	});
-
 });

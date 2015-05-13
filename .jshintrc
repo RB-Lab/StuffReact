@@ -16,5 +16,15 @@
 	"trailing": true,
 	"smarttabs": true,
 	"white": true,
-	"predef": ["document", "describe", "it", "expect", "sinon"]
+	"predef": [
+		"document",
+		"describe",
+		"it",
+		"before",
+		"after",
+		"beforeEach",
+		"afterEach",
+		"expect",
+		"sinon"
+	]
 }

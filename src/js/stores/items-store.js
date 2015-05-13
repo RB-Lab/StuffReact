@@ -1,7 +1,7 @@
 const _ = require('lodash');
-const assign = require('object-assign');
-const EventEmitter = require('events').EventEmitter;
 const AppDispatcher = require('app-dispatcher');
+const assign = require('object-assign');
+const GeneralStore = require('stores/general-store');
 const inboxConstants = require('components/views/inbox/constants');
 const storageActions = require('constants/app-constants').storageActions;
 const storage = require('lib/storage');
@@ -10,26 +10,9 @@ const Item = require('models/item');
 const {Map} = require('immutable'); /* jshint ignore: line */ // redefinition of Map - now it's immutable
 
 
-const CHANGE_EVENT = 'change';
-
 var items = [];
 
-var ItemsStore = assign({}, EventEmitter.prototype, {
-
-	// Allow Controller-View to register itself with store
-	addChangeListener(callback) {
-		this.on(CHANGE_EVENT, callback);
-	},
-
-	removeChangeListener(callback) {
-		this.removeListener(CHANGE_EVENT, callback);
-	},
-
-	// triggers change listener above, firing controller-view callback
-	emitChange() {
-		this.emit(CHANGE_EVENT);
-	},
-
+var ItemsStore = assign({}, GeneralStore, {
 
 	getInbox(){
 		return items.filter(Item.isInbox).reverse();

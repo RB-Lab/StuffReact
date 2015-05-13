@@ -85,6 +85,7 @@ describe('items store test', ()=>{
 	});
 
 	it('should be able to emit change',()=>{
+		console.log(Object.keys(itemsSotre));
 		expect(itemsSotre.emitChange).to.be.a('function');
 	});
 

@@ -6,10 +6,12 @@ module.exports = {
 	},
 
 	stoages: {
-		ITEMS_STORAGE: 'items'
+		ITEMS_STORAGE: 'items',
+		PROJECTS_STORAGE: 'projects',
+		CONTEXTS_STORAGE: 'contexts'
 	},
 
-	storageActions: {
+	storageActions: { // TODO this should be in views
 		SET_ITEM: 'SET_ITEM'
 	}
 

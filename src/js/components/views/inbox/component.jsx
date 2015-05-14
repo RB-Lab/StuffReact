@@ -14,6 +14,14 @@ let Inbox = React.createClass({
 		};
 	},
 
+	componentDidMount() {
+		ItemsStore.addChangeListener(this.onItemsChange_);
+	},
+
+	componentWillUnmount() {
+		ItemsStore.removeChangeListener(this.onItemsChange_);
+	},
+
 	add_() {
 		if(!this.state.currentValue) return;
 		Actions.addItem(this.state.currentValue);
@@ -36,14 +44,6 @@ let Inbox = React.createClass({
 
 	onItemsChange_(){
 		this.setState({inbox: ItemsStore.getInbox()});
-	},
-
-	componentDidMount() {
-		ItemsStore.addChangeListener(this.onItemsChange_);
-	},
-
-	componentWillUnmount() {
-		ItemsStore.removeChangeListener(this.onItemsChange_);
 	},
 
 	manageItem_(item){

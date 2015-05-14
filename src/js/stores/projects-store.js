@@ -22,6 +22,8 @@ var ProjectsStore = assign({}, GeneralStore, {
 
 });
 
+// TODO contexts and projects must be identified by ids
+
 // initial loading items array from storage
 storage.get(STOARGES.PROJECTS_STORAGE).then((storedItems) => {
 	if (_.isArray(storedItems)){

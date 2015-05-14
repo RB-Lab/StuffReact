@@ -10,9 +10,10 @@ const Item = require('models/item');
 const {Map} = require('immutable'); /* jshint ignore: line */ // redefinition of Map - now it's immutable
 
 
-var items = [];
+let items = [];
+let lastModifiedItem;
 
-var ItemsStore = assign({}, GeneralStore, {
+let ItemsStore = assign({}, GeneralStore, {
 
 	getInbox(){
 		return items.filter(Item.isInbox).reverse();
@@ -30,6 +31,15 @@ var ItemsStore = assign({}, GeneralStore, {
 		var index = items.indexOf(oldItem);
 		if(index < 0) debugger; // FIXME we still get here when undo "done" actions
 		items[index] = newItem;
+		lastModifiedItem = newItem;
+	},
+
+	getLastModifiedItem(){
+		return lastModifiedItem;
+	},
+
+	getItem(id){
+		return id; // TODO IMPLEMENT UIDS FOR ITEMS!!!!!!!!!!!1111ONEONEONE
 	}
 
 });

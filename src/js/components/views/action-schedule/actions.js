@@ -6,21 +6,34 @@ const storage = require('lib/storage');
 
 module.exports = {
 
-	setItemDoneStatus(item, done) {
+	setContext(item, context) {
 
 		AppDispatcher.handleViewAction({
 			type: storageActions.SET_ITEM,
 			data: {
 				oldItem: item,
-				newItem: item.set('done', done)
+				newItem: item.set('context', context)
 			}
 		});
 
 		storage.save(STOARGES.ITEMS_STORAGE, ItemsStore.getAll()).catch(function(){
 			// TODO error handling (saving attempts must be in storage)
 		});
+	},
 
-		//frameActions.changePage(ITEM_TYPE_TO_PAGE_MAP[type], item); //TODO: jump to inbox?
+	setProject(item, project) {
+
+		AppDispatcher.handleViewAction({
+			type: storageActions.SET_ITEM,
+			data: {
+				oldItem: item,
+				newItem: item.set('project', project)
+			}
+		});
+
+		storage.save(STOARGES.ITEMS_STORAGE, ItemsStore.getAll()).catch(function(){
+			// TODO error handling (saving attempts must be in storage)
+		});
 	}
 
 };

@@ -2,31 +2,31 @@ const _ = require('lodash');
 const AppDispatcher = require('app-dispatcher');
 const assign = require('object-assign');
 const GeneralStore = require('stores/general-store');
-const projectsConstants = require('components/views/projects/constants');
+const contextsConstants = require('components/views/contexts/constants');
 const storage = require('lib/storage');
 const STOARGES = require('constants/app-constants').stoages;
 const {Map} = require('immutable'); /* jshint ignore: line */ // redefinition of Map - now it's immutable
 
 
-var projects = [];
+var contexts = [];
 
 var ProjectsStore = assign({}, GeneralStore, {
 
 	getLastItem(){
-		return projects[projects.length - 1];
+		return contexts[contexts.length - 1];
 	},
 
 	getAll(){
-		return projects;
+		return contexts; // TODO inverse?
 	}
 
 });
 
 // initial loading items array from storage
-storage.get(STOARGES.PROJECTS_STORAGE).then((storedItems) => {
+storage.get(STOARGES.CONTEXTS_STORAGE).then((storedItems) => {
 	if (_.isArray(storedItems)){
 		storedItems.forEach((item) => {
-			projects.push(new Map(item));
+			contexts.push(new Map(item));
 			ProjectsStore.emitChange();
 		});
 	}
@@ -36,8 +36,8 @@ storage.get(STOARGES.PROJECTS_STORAGE).then((storedItems) => {
 
 AppDispatcher.register(function(payload){
 	switch(payload.action.type){
-		case projectsConstants.ADD_PROJECT:
-			projects.push(new Map({title: payload.action.data.projecName}));
+		case contextsConstants.ADD_CONTEXT:
+			contexts.push(new Map({title: payload.action.data.contextName}));
 			ProjectsStore.emitChange();
 			break;
 	}

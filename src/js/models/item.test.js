@@ -18,6 +18,8 @@ describe('Item model constructor', () => {
 			done: true
 		};
 		const item = new Item(mock);
+		expect(item.id).to.be.a('string');
+		expect(item.id.length).to.equal(5);
 		expect(item.type).to.equal(mock.type);
 		expect(item.context).to.equal(mock.context);
 		expect(item.poject).to.equal(mock.poject);

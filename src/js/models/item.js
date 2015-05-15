@@ -1,10 +1,12 @@
 const _ = require('lodash');
+const randomstring = require('randomstring');
 const TYPES = require('constants/item-types');
 
 function Item(initValue){
 
 	initValue = _.isObject(initValue) ? initValue : {title: initValue || ''};
 
+	this.id = randomstring.generate(5);
 	this.type = initValue.type || '';
 	this.context = initValue.context || null;
 	this.project = initValue.project || null;

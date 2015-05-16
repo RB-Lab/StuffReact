@@ -11,7 +11,6 @@ const {Map} = require('immutable'); /* jshint ignore: line */ // redefinition of
 
 
 let items = [];
-let lastModifiedItem;
 
 let ItemsStore = assign({}, GeneralStore, {
 
@@ -27,26 +26,24 @@ let ItemsStore = assign({}, GeneralStore, {
 		return items;
 	},
 
-	setItem(oldItem, newItem){
-		var index = items.indexOf(oldItem);
-		if(index < 0) debugger; // FIXME we still get here when undo "done" actions
+	setItem(newItem){
+		var index;
+		_.find(items, (item, i) => {
+			index = i;
+			return item.get('id') === newItem.get('id');
+		});
 		items[index] = newItem;
-		lastModifiedItem = newItem;
 	},
 
-	getLastModifiedItem(){
-		return lastModifiedItem;
-	},
-
-	getItem(id){
-		return id; // TODO IMPLEMENT UIDS FOR ITEMS!!!!!!!!!!!1111ONEONEONE
+	getById(id){ // TODO move it to some common ancestor
+		return _.find(items, (item) => {return item.get('id') === id;});
 	}
 
 });
 
 // initial loading items array from storage
 storage.get(STOARGES.ITEMS_STORAGE).then((storedItems) => {
-	if (_.isArray(storedItems)){
+	if (Array.isArray(storedItems)){
 		storedItems.forEach((item) => {
 			items.push(new Map(item));
 			ItemsStore.emitChange();
@@ -63,7 +60,7 @@ AppDispatcher.register(function(payload){
 			ItemsStore.emitChange();
 			break;
 		case storageActions.SET_ITEM:
-			ItemsStore.setItem(payload.action.data.oldItem, payload.action.data.newItem);
+			ItemsStore.setItem(payload.action.data);
 			ItemsStore.emitChange();
 			break;
 	}

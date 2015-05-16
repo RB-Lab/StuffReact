@@ -10,10 +10,7 @@ module.exports = {
 
 		AppDispatcher.handleViewAction({
 			type: storageActions.SET_ITEM,
-			data: {
-				oldItem: item,
-				newItem: item.set('done', done)
-			}
+			data: item.set('done', done)
 		});
 
 		storage.save(STOARGES.ITEMS_STORAGE, ItemsStore.getAll()).catch(function(){

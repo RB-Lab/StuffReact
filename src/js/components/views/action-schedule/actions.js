@@ -10,10 +10,7 @@ module.exports = {
 
 		AppDispatcher.handleViewAction({
 			type: storageActions.SET_ITEM,
-			data: {
-				oldItem: item,
-				newItem: item.set('context', context)
-			}
+			data: item.set('context', context)
 		});
 
 		storage.save(STOARGES.ITEMS_STORAGE, ItemsStore.getAll()).catch(function(){
@@ -25,10 +22,7 @@ module.exports = {
 
 		AppDispatcher.handleViewAction({
 			type: storageActions.SET_ITEM,
-			data: {
-				oldItem: item,
-				newItem: item.set('project', project)
-			}
+			data: item.set('project', project)
 		});
 
 		storage.save(STOARGES.ITEMS_STORAGE, ItemsStore.getAll()).catch(function(){

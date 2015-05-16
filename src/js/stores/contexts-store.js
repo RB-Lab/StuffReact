@@ -19,6 +19,10 @@ var ProjectsStore = assign({}, GeneralStore, {
 
 	getAll(){
 		return contexts; // TODO inverse?
+	},
+
+	getById(id){
+		return _.find(contexts, (item) => {return item.get('id') === id;});
 	}
 
 });

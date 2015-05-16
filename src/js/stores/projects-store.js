@@ -19,6 +19,10 @@ var ProjectsStore = assign({}, GeneralStore, {
 
 	getAll(){
 		return projects;
+	},
+
+	getById(id){
+		return _.find(projects, (item) => {return item.get('id') === id;});
 	}
 
 });

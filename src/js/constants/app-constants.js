@@ -12,7 +12,7 @@ module.exports = {
 	},
 
 	storageActions: { // TODO this should be in views
-		SET_ITEM: 'SET_ITEM'
+		SET_ITEM: Symbol('set item')
 	}
 
 };

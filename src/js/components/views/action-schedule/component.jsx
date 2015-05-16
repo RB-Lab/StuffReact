@@ -8,6 +8,10 @@ const ProjectsStore = require('stores/projects-store');
 
 const contexts = ContextsStore.getAll();
 const projects = ProjectsStore.getAll();
+const storeMap = {
+	'context': ContextsStore,
+	'project': ProjectsStore
+};
 
 let ActionSchedule = React.createClass({
 
@@ -24,7 +28,7 @@ let ActionSchedule = React.createClass({
 	},
 
 	onItemsChange_(){
-		this.setState({item: ItemsStore.getLastModifiedItem()});
+		this.setState({item: ItemsStore.getById(this.props.data.get('id'))});
 	},
 
 	selectContext_(){
@@ -36,17 +40,20 @@ let ActionSchedule = React.createClass({
 	},
 
 	setContext_(context){
-		Actions.setContext(this.state.item, context.get('title'));
+		Actions.setContext(this.state.item, context.get('id'));
 		this.refs.contextDialog.dismiss();
 	},
 
 	setProject_(project){
-		Actions.setProject(this.state.item, project.get('title'));
+		Actions.setProject(this.state.item, project.get('id'));
 		this.refs.projectDialog.dismiss();
 	},
 
-	get_(what){
-		return this.state.item.get(what) || '...';
+	getTitle_(what){
+		const id = this.state.item.get(what);
+		if(!id) return '...';
+		const item = storeMap[what].getById(id);
+		return item ? item.get('title') : '...';
 	},
 
 	render() {
@@ -54,7 +61,7 @@ let ActionSchedule = React.createClass({
 			<section>
 			<h4>Schedule &laquo;{this.state.item.get('title')}&raquo;?</h4>
 			<h6>Context:</h6>
-			<FlatButton label={this.get_('context')} onClick={this.selectContext_}/>
+			<FlatButton label={this.getTitle_('context')} onClick={this.selectContext_}/>
 			<Dialog ref='contextDialog' title='Select context' modal={true}>
 				{contexts.map((item) => {
 					return(
@@ -64,7 +71,7 @@ let ActionSchedule = React.createClass({
 			</Dialog>
 
 			<h6>Project:</h6>
-			<FlatButton label={this.get_('project')}  onClick={this.selectProject_}/>
+			<FlatButton label={this.getTitle_('project')}  onClick={this.selectProject_}/>
 			<Dialog ref='projectDialog' title='Select project' modal={true}>
 				{projects.map((item) => {
 					return(

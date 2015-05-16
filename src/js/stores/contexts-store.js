@@ -4,6 +4,7 @@ const assign = require('object-assign');
 const GeneralStore = require('stores/general-store');
 const contextsConstants = require('components/views/contexts/constants');
 const storage = require('lib/storage');
+const Context = require('models/context');
 const STOARGES = require('constants/app-constants').stoages;
 const {Map} = require('immutable'); /* jshint ignore: line */ // redefinition of Map - now it's immutable
 
@@ -37,7 +38,7 @@ storage.get(STOARGES.CONTEXTS_STORAGE).then((storedItems) => {
 AppDispatcher.register(function(payload){
 	switch(payload.action.type){
 		case contextsConstants.ADD_CONTEXT:
-			contexts.push(new Map({title: payload.action.data.contextName}));
+			contexts.push(new Map(new Context(payload.action.data.contextName)));
 			ProjectsStore.emitChange();
 			break;
 	}

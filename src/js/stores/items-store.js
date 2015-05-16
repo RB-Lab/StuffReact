@@ -48,7 +48,7 @@ let ItemsStore = assign({}, GeneralStore, {
 storage.get(STOARGES.ITEMS_STORAGE).then((storedItems) => {
 	if (_.isArray(storedItems)){
 		storedItems.forEach((item) => {
-			items.push(new Map(new Item(item)));
+			items.push(new Map(item));
 			ItemsStore.emitChange();
 		});
 	}

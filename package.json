@@ -31,13 +31,14 @@
     "sinon": "^1.14.1",
     "vinyl-buffer": "~1.0.0",
     "vinyl-source-stream": "~1.1.0",
-    "watchify": "~3.1.0"
+    "watchify": "~3.1.0",
+    "uglifyify": "~3.0.1"
   },
   "scripts": {
     "dev": "NODE_PATH=src/js gulp --type dev",
     "test": "NODE_PATH=src/js ./node_modules/karma/bin/karma start",
     "start": "NODE_PATH=src/js gulp",
-    "build": "gulp build"
+    "build": "NODE_PATH=src/js gulp build"
   },
   "jest": {
     "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",

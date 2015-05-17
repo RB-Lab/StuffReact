@@ -23,21 +23,27 @@ var ProjectsStore = assign({}, GeneralStore, {
 
 	getById(id){
 		return _.find(contexts, (item) => {return item.get('id') === id;});
-	}
+	},
+
+	reread: init
 
 });
 
 // initial loading items array from storage
-storage.get(STOARGES.CONTEXTS_STORAGE).then((storedItems) => {
-	if (_.isArray(storedItems)){
-		storedItems.forEach((item) => {
-			contexts.push(new Map(item));
-			ProjectsStore.emitChange();
-		});
-	}
-}).catch(function(){
-	// TODO what?
-});
+function init(){
+	storage.get(STOARGES.CONTEXTS_STORAGE).then((storedItems) => {
+		if (_.isArray(storedItems)){
+			storedItems.forEach((item) => {
+				contexts.push(new Map(item));
+				ProjectsStore.emitChange();
+			});
+		}
+	}).catch(function(){
+		// TODO what?
+	});
+}
+
+init();
 
 AppDispatcher.register(function(payload){
 	switch(payload.action.type){

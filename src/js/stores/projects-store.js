@@ -36,19 +36,24 @@ var ProjectsStore = assign({}, GeneralStore, {
 		projects[index] = newProject;
 	},
 
+	reread: init
 });
 
-// initial loading items array from storage
-storage.get(STOARGES.PROJECTS_STORAGE).then((storedItems) => {
-	if (_.isArray(storedItems)){
-		storedItems.forEach((item) => {
-			projects.push(new Map(item));
-			ProjectsStore.emitChange();
-		});
-	}
-}).catch(function(){
-	// TODO what?
-});
+function init(){
+	// initial loading items array from storage
+	storage.get(STOARGES.PROJECTS_STORAGE).then((storedItems) => {
+		if (_.isArray(storedItems)){
+			storedItems.forEach((item) => {
+				projects.push(new Map(item));
+				ProjectsStore.emitChange();
+			});
+		}
+	}).catch(function(){
+		// TODO what?
+	});
+}
+
+init();
 
 AppDispatcher.register(function(payload){
 	switch(payload.action.type){

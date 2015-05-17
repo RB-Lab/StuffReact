@@ -43,21 +43,27 @@ let ItemsStore = assign({}, GeneralStore, {
 		return items.filter((item) => {
 			return item.get('project') === projectId;
 		});
-	}
+	},
+
+	reread: init
 
 });
 
 // initial loading items array from storage
-storage.get(STOARGES.ITEMS_STORAGE).then((storedItems) => {
-	if (Array.isArray(storedItems)){
-		storedItems.forEach((item) => {
-			items.push(new Map(item));
-			ItemsStore.emitChange();
-		});
-	}
-}).catch(function(){
-	// TODO what?
-});
+function init(){
+	storage.get(STOARGES.ITEMS_STORAGE).then((storedItems) => {
+		if (Array.isArray(storedItems)){
+			storedItems.forEach((item) => {
+				items.push(new Map(item));
+				ItemsStore.emitChange();
+			});
+		}
+	}).catch(function(){
+		// TODO what?
+	});
+}
+
+init();
 
 AppDispatcher.register(function(payload){
 	switch(payload.action.type){

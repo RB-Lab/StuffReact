@@ -4,6 +4,8 @@ const Actions = require('./actions');
 const KEYS = require('constants/key-codes');
 const ProjectsStore = require('stores/projects-store');
 const Item = require('components/ui/item/component.jsx');
+const frameActions = require('components/frame/actions');
+const PAGES = require('constants/pages').PAGES;
 
 let Inbox = React.createClass({
 
@@ -40,8 +42,8 @@ let Inbox = React.createClass({
 		this.setState({projects: ProjectsStore.getAll()});
 	},
 
-	manageProject_(){
-		console.log('manage_project');
+	manageProject_(item){
+		frameActions.changePage(PAGES.MANAGE_PROJECT, item);
 	},
 
 	render() {

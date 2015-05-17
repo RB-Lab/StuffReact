@@ -9,6 +9,7 @@ const PAGES = {
 	MANAGE_ACTION: 'manageAction',
 	MANAGE_REFERENCE: 'manageReference',
 	MANAGE_IDEA: 'manageIdea',
+	MANAGE_PROJECT: 'manageProject',
 	ACTION_SCHEDULE: 'actionSchedule',
 	ACTION_DELEGATE: 'actionDelegate'
 };

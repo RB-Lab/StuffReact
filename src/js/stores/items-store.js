@@ -37,6 +37,12 @@ let ItemsStore = assign({}, GeneralStore, {
 
 	getById(id){ // TODO move it to some common ancestor
 		return _.find(items, (item) => {return item.get('id') === id;});
+	},
+
+	getAllByProjectId(projectId){
+		return items.filter((item) => {
+			return item.get('project') === projectId;
+		});
 	}
 
 });

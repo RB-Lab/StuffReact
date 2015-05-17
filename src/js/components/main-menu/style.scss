@@ -1,5 +1,25 @@
 
-	header#main-menu{
-		border-bottom: 2px #CACACA solid;
-		padding-bottom: 10px
+.main-menu{
+	border-bottom: 2px #CACACA solid;
+	padding-bottom: 10px;
+	position: relative;
+
+	&__right-pane{
+		position: absolute;
+		right: $generalPadding;
+		top: 0
 	}
+}
+
+.settings-dialog{
+	&__text-field{
+		width: 100%
+	}
+}
+
+.sync-dialog{
+	text-align: center;
+	&__button{
+		margin-right: 10px
+	}
+}

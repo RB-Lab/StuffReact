@@ -60,8 +60,9 @@
     "material-ui-sass": "~0.7.2",
     "object-assign": "~2.0.0",
     "promise": "~7.0.0",
+    "randomstring": "~1.0.5",
     "react": "~0.13.1",
     "react-tap-event-plugin": "~0.1.6",
-    "randomstring": "~1.0.5"
+    "xhr": "^2.0.1"
   }
 }

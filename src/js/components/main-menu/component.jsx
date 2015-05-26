@@ -1,7 +1,8 @@
 const React = require('react');
-const {LeftNav, IconButton, Dialog, TextField, FloatingActionButton, Snackbar} = require('material-ui');
+const {LeftNav, IconButton, Dialog, RaisedButton, TextField, FloatingActionButton, Snackbar} = require('material-ui');
 const frameActions = require('components/frame/actions');
 const WebdavStorage = require('lib/webdav-storage');
+const GoogleDirveStorage = require('lib/google-drive-storage');
 const Storage = require('lib/storage');
 const projectsStore = require('stores/projects-store');
 const contextsStore = require('stores/contexts-store');
@@ -79,6 +80,10 @@ let MainMenu = React.createClass({
 		this.refs.settingsDialog.dissmiss();
 	},
 
+	onGooleClick_(){
+		GoogleDirveStorage.checkAuth();
+	},
+
 	render() {
 		let settingsActions = [
 			{text: 'Cancel'},
@@ -108,6 +113,8 @@ let MainMenu = React.createClass({
 				<Dialog className='sync-dialog' ref='syncDialog'>
 					<FloatingActionButton className='sync-dialog__button' onClick={this.uploadToCloud_} iconClassName='md-cloud-upload md-2x'  secondary={true}/>
 					<FloatingActionButton className='sync-dialog__button' onClick={this.downloadFromCloud_} iconClassName='md-cloud-download md-2x'  secondary={true}/>
+
+					<RaisedButton onClick={this.onGooleClick_} label='google'/>
 				</Dialog>
 
 				<Snackbar ref='sysMessage' message={this.state.message} />
